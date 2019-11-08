@@ -19,7 +19,8 @@ class BreedRemoteDataSource: BreedDataSource {
     }
 
     override fun getAllBreeds(): Breed? {
-        val call = breedsAPI.getAllIsses()
+        val call = breedsAPI.getAllBreeds()
         return call.execute().body()
     }
+
 }

@@ -47,7 +47,7 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         swipeToRefresh.isRefreshing = false
     }
 
-    override fun updateBreedsList(breeds: ArrayList<Breed>) {
+    override fun updateBreedsList(breeds: ArrayList<String>) {
        // adapter = IssueAdapter(breeds) { onClickIssue(it) }
       //  recyclerView.adapter = adapter
       //  adapter.notifyDataSetChanged()

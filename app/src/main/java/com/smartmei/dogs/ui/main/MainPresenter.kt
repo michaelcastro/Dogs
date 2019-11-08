@@ -25,9 +25,11 @@ class MainPresenter: MainContract.Presenter {
             .subscribe({
                 mainView?.hideLoading()
                 it?.let {
-                    Log.e("Breeds", it.toString())
-                    Log.e("Breeds", it.message.toString())
-                    //mainView?.updateBreedsList(it)
+                    val breedsList = ArrayList<String>()
+                    it.message.iterator().forEach {
+                        breedsList.add(it.key)
+                    }
+                    mainView?.updateBreedsList(breedsList)
                 }
 
             },

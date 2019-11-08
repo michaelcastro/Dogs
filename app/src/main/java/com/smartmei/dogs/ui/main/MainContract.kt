@@ -13,7 +13,7 @@ interface MainContract {
         fun showMessage(message: String)
         fun showLoading()
         fun hideLoading()
-        fun updateBreedsList(breeds: ArrayList<Breed>)
+        fun updateBreedsList(breeds: ArrayList<String>)
     }
 
 }

@@ -6,5 +6,5 @@ import retrofit2.http.GET
 
 interface BreedsAPI {
     @GET("list/all")
-    fun getAllIsses() : Call<Breed>
+    fun getAllBreeds() : Call<Breed>
 }
