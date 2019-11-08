@@ -8,6 +8,7 @@
     android:layout_height="wrap_content">
         <ImageView
             android:id="@+id/imageBreed"
+            android:adjustViewBounds="true"
             android:layout_gravity="center"
             android:padding="1dp"
             android:background="@android:color/darker_gray"
