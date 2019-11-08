@@ -66,7 +66,6 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun showMessage(message: String) {
-        Log.e("message", message)
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 
