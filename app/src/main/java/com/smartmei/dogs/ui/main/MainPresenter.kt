@@ -13,13 +13,13 @@ class MainPresenter: MainContract.Presenter {
 
     var mainView: MainContract.View? = null
 
-    val issueDataSource: BreedDataSource = BreedRemoteDataSource()
+    val breedDataSource: BreedDataSource = BreedRemoteDataSource()
 
     @SuppressLint("CheckResult")
     override fun getAllBreeds() {
         mainView?.showLoading()
         Observable.fromCallable {
-            issueDataSource.getAllBreeds()
+            breedDataSource.getAllBreeds()
         }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

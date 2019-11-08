@@ -3,6 +3,7 @@ package com.smartmei.dogs.ui.main
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smartmei.dogs.ApplicationApp
@@ -53,18 +54,19 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun updateBreedsList(breeds: ArrayList<String>) {
-        adapter = BreedAdapter(breeds) { onClickIssue(it) }
+        adapter = BreedAdapter(breeds) { onClickBreed(it) }
         recyclerView.adapter = adapter
         adapter?.notifyDataSetChanged()
     }
 
-    fun onClickIssue(breed: String) {
+    fun onClickBreed(breed: String) {
         val intent = Intent(this, BreedDetailActivity::class.java)
         intent.putExtra(Extras.BREED, breed)
         startActivity(intent)
     }
 
     override fun showMessage(message: String) {
+        Log.e("message", message)
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
     }
 

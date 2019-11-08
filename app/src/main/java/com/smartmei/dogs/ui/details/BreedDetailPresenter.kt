@@ -12,7 +12,7 @@ class BreedDetailPresenter: BreedDetailContract.Presenter {
 
     var view: BreedDetailContract.View? = null
 
-    val issueDataSource: BreedDataSource = BreedRemoteDataSource()
+    val breedDataSource: BreedDataSource = BreedRemoteDataSource()
 
     private var pagination = 10
     private var isLoading = false
@@ -22,7 +22,7 @@ class BreedDetailPresenter: BreedDetailContract.Presenter {
         if (lastVisibleItem == (totalItemCount - 1) && !isLoading ) {
             isLoading = true
             Observable.fromCallable {
-                issueDataSource.getBreedImages(breed.toLowerCase(Locale.ROOT), pagination)
+                breedDataSource.getBreedImages(breed.toLowerCase(Locale.ROOT), pagination)
             }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -46,7 +46,7 @@ class BreedDetailPresenter: BreedDetailContract.Presenter {
     override fun getImagesBreed(breed: String) {
             view?.showLoading()
             Observable.fromCallable {
-                issueDataSource.getBreedImages(breed.toLowerCase(Locale.ROOT), pagination)
+                breedDataSource.getBreedImages(breed.toLowerCase(Locale.ROOT), pagination)
             }
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
