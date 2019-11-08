@@ -1,12 +1,13 @@
 package com.smartmei.dogs.ui.main
 
 import android.annotation.SuppressLint
-import android.util.Log
 import com.smartmei.dogs.data.source.BreedDataSource
 import com.smartmei.dogs.data.source.remote.BreedRemoteDataSource
 import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.util.*
+import kotlin.collections.ArrayList
 
 class MainPresenter: MainContract.Presenter {
 
@@ -27,11 +28,10 @@ class MainPresenter: MainContract.Presenter {
                 it?.let {
                     val breedsList = ArrayList<String>()
                     it.message.iterator().forEach {
-                        breedsList.add(it.key)
+                        breedsList.add(it.key.substring(0,1).toUpperCase(Locale.ROOT)+it.key.substring(1))
                     }
                     mainView?.updateBreedsList(breedsList)
                 }
-
             },
                 {
                     mainView?.hideLoading()
@@ -44,6 +44,10 @@ class MainPresenter: MainContract.Presenter {
 
     override fun atachView(view: MainContract.View) {
         mainView = view
+    }
+
+    override fun detachView() {
+        mainView = null
     }
 
 }

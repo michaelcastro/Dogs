@@ -1,12 +1,15 @@
 package com.smartmei.dogs.ui.main
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.smartmei.dogs.ApplicationApp
 import com.smartmei.dogs.R
-import com.smartmei.dogs.data.Breed
+import com.smartmei.dogs.ui.adapter.BreedAdapter
+import com.smartmei.dogs.ui.details.BreedDetailActivity
+import com.smartmei.dogs.utils.Extras
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -14,6 +17,8 @@ class MainActivity : AppCompatActivity(), MainContract.View {
 
     @Inject
     lateinit var presenter: MainContract.Presenter
+
+    private var adapter: BreedAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,18 +53,23 @@ class MainActivity : AppCompatActivity(), MainContract.View {
     }
 
     override fun updateBreedsList(breeds: ArrayList<String>) {
-       // adapter = IssueAdapter(breeds) { onClickIssue(it) }
-      //  recyclerView.adapter = adapter
-      //  adapter.notifyDataSetChanged()
+        adapter = BreedAdapter(breeds) { onClickIssue(it) }
+        recyclerView.adapter = adapter
+        adapter?.notifyDataSetChanged()
     }
 
-    fun onClickIssue(breed: Breed) {
-        //val intent = Intent(this, IssueDetailActivity::class.java)
-       // intent.putExtra(Extras.ISSUE_NUMBER, issue.number)
-        //startActivity(intent)
+    fun onClickIssue(breed: String) {
+        val intent = Intent(this, BreedDetailActivity::class.java)
+        intent.putExtra(Extras.BREED, breed)
+        startActivity(intent)
     }
 
     override fun showMessage(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_LONG).show()
+    }
+
+    override fun onDestroy() {
+        presenter.detachView()
+        super.onDestroy()
     }
 }
