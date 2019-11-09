@@ -17,12 +17,13 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/txtTitle"
             android:maxLines="2"
             android:textStyle="bold"
             android:ellipsize="end"
             android:textColor="@android:color/black"
+            app:fontFamily="monospace"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
